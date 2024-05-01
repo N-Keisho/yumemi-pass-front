@@ -35,7 +35,7 @@ export default function Home() {
 
   return (
     <>
-      <LineChart prefCode={2} category={category}/>
+      <LineChart prefCode={selectedPrefecture} category={category}/>
       <button onClick={handleCategoryChange}>Change Category</button>
       <div style={{}}>
         {

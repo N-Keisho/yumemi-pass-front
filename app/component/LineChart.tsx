@@ -17,19 +17,32 @@ import { Population } from "@/types/resas";
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement);
 
 
-export default function LineChart ({prefCode, category}:{prefCode: number, category: number}) {
-    
-    const [population, setPopulation] = useState<Population | null>(null);
-    useEffect(() => {
-        (async () => {
-            const res = await getPopulation(prefCode);
-            setPopulation(res);
-        })();
-    }, [prefCode]);
+interface PopulationsDataProps {
+    prefCodes: number[];
+    populations: Population[];
+}
 
-    if (!population) {
-        return <div>loading...</div>;
-    }
+export default function LineChart ({prefCode, category}:{prefCode: number[], category: number}) {
+    
+    const [selectedPopulations, setSelectedPopulations] = useState<Population[]>([]);
+    const [populationsData, setPopulationsData] = useState<PopulationsDataProps>({prefCodes: [], populations: []});
+    useEffect(() => {
+        setSelectedPopulations([]);
+        prefCode.forEach(async (p) => {
+
+            const t = populationsData.prefCodes.find((d) => d === p);
+            if (t) {
+                // if (selectedPopulations.includes(populationsData.populations[populationsData.prefCodes.indexOf(p)])) return;
+                setSelectedPopulations([...selectedPopulations, populationsData.populations[populationsData.prefCodes.indexOf(p)]]);
+            }else {
+                const res = await getPopulation(p);
+                if (res) {
+                    setPopulationsData({prefCodes: [...populationsData.prefCodes, p], populations: [...populationsData.populations, res]});
+                    setSelectedPopulations([...selectedPopulations, res]);
+                }
+            }
+        });
+    }, [prefCode]);
 
     const options: ChartOptions<"line"> = {
         scales: {
@@ -47,18 +60,19 @@ export default function LineChart ({prefCode, category}:{prefCode: number, categ
             },
         },
     };
+    
+
 
     const data: ChartData<"line"> = {
-        labels: population.result.data[category].data.map((d) => d.year),
-        datasets: [
-            {
-                label: "Population",
-                data: population.result.data[category].data.map((d) => d.value),
+        labels: selectedPopulations[0]?.result.data[0].data.map((d) => d.year) || [],
+        datasets: selectedPopulations.map((p, i) => {
+            return {
+                label: p.result.data[0].label,
+                data: p.result.data[category].data.map((d) => d.value),
                 fill: false,
-                backgroundColor: "rgb(255, 99, 132)",
-                borderColor: "rgba(255, 99, 132, 0.2)",
-            },
-        ],
+                borderColor: `hsl(${(360 / selectedPopulations.length) * i}, 100%, 50%)`,
+            };
+        })
     };
 
     return (
