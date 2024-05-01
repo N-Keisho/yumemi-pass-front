@@ -7,58 +7,78 @@ import {
   LineElement,
   ChartOptions,
   ChartData,
+  Title,
+  Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import { getPopulation } from "@/libs/resas";
 import { useEffect } from "react";
 import { useState } from "react";
-import { Population } from "@/types/resas";
+import { Population, ExtendedPopulation, Prefecture } from "@/types/resas";
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement);
+ChartJS.register(
+    CategoryScale, 
+    LinearScale, 
+    PointElement, 
+    LineElement, 
+    Title, 
+    Legend
+);
 
-
-interface PopulationsDataProps {
-    prefCodes: number[];
-    populations: Population[];
-}
-
-export default function LineChart ({prefCode, category}:{prefCode: number[], category: number}) {
+export default function LineChart ({prefectures, category}:{prefectures:Prefecture[], category: number}) {
     
-    const [selectedPopulations, setSelectedPopulations] = useState<Population[]>([]);
-    const [populationsData, setPopulationsData] = useState<PopulationsDataProps>({prefCodes: [], populations: []});
-    useEffect(() => {
-        setSelectedPopulations([]);
-        prefCode.forEach(async (p) => {
+    const selectedPopulations: ExtendedPopulation[] = [];
+    const [populationsData, setPopulationsData] = useState<ExtendedPopulation[]>([]);
 
-            const t = populationsData.prefCodes.find((d) => d === p);
-            if (t) {
-                // if (selectedPopulations.includes(populationsData.populations[populationsData.prefCodes.indexOf(p)])) return;
-                setSelectedPopulations([...selectedPopulations, populationsData.populations[populationsData.prefCodes.indexOf(p)]]);
-            }else {
-                const res = await getPopulation(p);
-                if (res) {
-                    setPopulationsData({prefCodes: [...populationsData.prefCodes, p], populations: [...populationsData.populations, res]});
-                    setSelectedPopulations([...selectedPopulations, res]);
-                }
+    prefectures.forEach(async (p) => {
+        const pData = populationsData.find((d) => d.prefCode === p.prefCode);
+        if (pData) {
+            if (!selectedPopulations.find((d) => d.prefCode === p.prefCode))
+                selectedPopulations.push(pData);
+        }else {
+            const res = await getPopulation(p.prefCode);
+            if (res) {
+                setPopulationsData([...populationsData, {prefCode: p.prefCode, prefName:p.prefName, result: res.result, message: res.message}]);
+                selectedPopulations.push({prefCode: p.prefCode, prefName:p.prefName, result: res.result, message: res.message});
             }
-        });
-    }, [prefCode]);
+        }
+    });
 
+
+    const title = {
+        0: "総人口",
+        1: "年少人口",
+        2: "生産年齢人口",
+        3: "老年人口",
+    }
     const options: ChartOptions<"line"> = {
         scales: {
             x: {
                 title: {
                     display: true,
-                    text: "Year",
+                    text: "年度（年）",
                 },
             },
             y: {
                 title: {
                     display: true,
-                    text: "Population",
+                    text: "人口（人）",
                 },
             },
         },
+        plugins: {
+            title: {
+                display: true,
+                text: title[category as keyof typeof title] || "",
+            },
+            legend: {
+                display: true,
+                position: "bottom",
+            },
+        },
+        animation: {
+            duration: 1000,
+        }
     };
     
 
@@ -67,7 +87,7 @@ export default function LineChart ({prefCode, category}:{prefCode: number[], cat
         labels: selectedPopulations[0]?.result.data[0].data.map((d) => d.year) || [],
         datasets: selectedPopulations.map((p, i) => {
             return {
-                label: p.result.data[0].label,
+                label: p.prefName,
                 data: p.result.data[category].data.map((d) => d.value),
                 fill: false,
                 borderColor: `hsl(${(360 / selectedPopulations.length) * i}, 100%, 50%)`,
@@ -76,7 +96,7 @@ export default function LineChart ({prefCode, category}:{prefCode: number[], cat
     };
 
     return (
-        <div style={{margin:"10px 0 0 0", padding:"10px"}}>
+        <div>
             <Line options={options} data={data} />
         </div>
     );

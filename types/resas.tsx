@@ -10,6 +10,11 @@ export interface Prefecture {
     prefName: string;
 }
 
+// Populationの拡張
+export interface ExtendedPopulation extends Population {
+    prefCode: number;
+    prefName: string;
+}
 
 // getPopulation()の戻り値
 export interface Population {
