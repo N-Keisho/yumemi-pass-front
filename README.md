@@ -1,36 +1,28 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# フロントエンドコーディング試験
 
-## Getting Started
+以下の試験のために作成したものになります．
 
-First, run the development server:
+https://yumemi.notion.site/0e9ef27b55704d7882aab55cc86c999d
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+# 使用チャートライブラリ
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- react-chartjs-2
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# 使用API
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- RESAS：https://opendata.resas-portal.go.jp/
 
-## Learn More
+# 参考サイト
 
-To learn more about Next.js, take a look at the following resources:
+- https://zenn.dev/nihashi/articles/1f8a1f828554af
+- https://note.yumemi.co.jp/n/ned7429b59556
+- https://qiita.com/konatsu_p/items/dfe199ebe3a7d2010b3e
+- https://zenn.dev/ficilcom/articles/6a9b68fbf4c031
+- https://qiita.com/k_kind/items/0e24c54da6fb44403e97
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# やることメモ
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- エラー時の処理を行う：https://opendata.resas-portal.go.jp/docs/api/v1/detail/index.html
+- リセット・全選択ボタンを追加する
+- 見た目をもっと見やすくする
+- MetaDataを整備する
