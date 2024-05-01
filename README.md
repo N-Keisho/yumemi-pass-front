@@ -23,6 +23,5 @@ https://yumemi.notion.site/0e9ef27b55704d7882aab55cc86c999d
 # やることメモ
 
 - エラー時の処理を行う：https://opendata.resas-portal.go.jp/docs/api/v1/detail/index.html
-- リセット・全選択ボタンを追加する
 - 見た目をもっと見やすくする
 - MetaDataを整備する

@@ -37,16 +37,26 @@ export default function Home() {
     setCategory(c);
   }
 
+  const reset = () => {
+    setSelectedPrefecture([]);
+  }
+
+  const selectAll = () => {
+    setSelectedPrefecture(prefectures);
+  }
+
   return (
     <>
       <LineChart prefectures={selectedPrefecture} category={category}/>
       <button onClick={handleCategoryChange}>Change Category</button>
+      <button onClick={reset}>Reset</button>
+      <button onClick={selectAll}>Select All</button>
       <div>
         {
           prefectures.map((p) => (
-            <div key={p.prefCode} style={{display: 'inline-block', margin: '5px'}}>
+            <label key={p.prefCode} style={{display: 'inline-block', margin: '5px'}}>
               <input type="checkbox" checked={selectedPrefecture.includes(p)} onChange={() => {handlePrefChange(p.prefCode)}}/>{p.prefName}
-            </div>
+            </label>
           ))
         }
       </div>
