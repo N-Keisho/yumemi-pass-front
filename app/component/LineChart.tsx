@@ -17,7 +17,7 @@ import { Population } from "@/types/resas";
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement);
 
 
-export default function LineChart ({prefName, prefCode, category}:{prefName:string, prefCode: number, category: number}) {
+export default function LineChart ({prefCode, category}:{prefCode: number, category: number}) {
     
     const [population, setPopulation] = useState<Population | null>(null);
     useEffect(() => {
@@ -63,7 +63,6 @@ export default function LineChart ({prefName, prefCode, category}:{prefName:stri
 
     return (
         <div style={{margin:"10px 0 0 0", padding:"10px"}}>
-            <h1>{prefName} の {population.result.data[category].label}</h1>
             <Line options={options} data={data} />
         </div>
     );

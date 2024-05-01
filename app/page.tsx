@@ -8,7 +8,7 @@ import { Prefecture } from "@/types/resas";
 export default function Home() {
 
   const [prefectures, setPrefectures] = useState<Prefecture[]>([]);
-  const [prefecture, setPrefecture] = useState<Prefecture>({prefCode: 1, prefName: "北海道"});
+  const [selectedPrefecture, setSelectedPrefecture] = useState<number[]>([]);
   const [category, setCategory] = useState<number>(1);
 
   useEffect(() => {
@@ -20,11 +20,13 @@ export default function Home() {
     })();
   }, []);
 
-  const handlePrefChange = () => {
-    const p = (prefecture.prefCode + 1) % 47 + 1;
-    const name = prefectures.find((pe) => pe.prefCode === p)?.prefName;
-    setPrefecture({prefCode: p, prefName: name || "?"});
-  };
+  const handlePrefChange = (prefCode: number) => {
+    if (selectedPrefecture.includes(prefCode)) {
+      setSelectedPrefecture(selectedPrefecture.filter((p) => p !== prefCode));
+    } else {
+      setSelectedPrefecture([...selectedPrefecture, prefCode]);
+    }
+  }
 
   const handleCategoryChange = () => {
     const c = (category + 1) % 4;
@@ -33,10 +35,17 @@ export default function Home() {
 
   return (
     <>
-      <LineChart prefName={prefecture.prefName} prefCode={prefecture.prefCode} category={category}/>
+      <LineChart prefCode={2} category={category}/>
       <button onClick={handleCategoryChange}>Change Category</button>
-      <button onClick={handlePrefChange}>Change Pref</button>
-
+      <div style={{}}>
+        {
+          prefectures.map((p) => (
+            <div key={p.prefCode} style={{display: 'inline-block', margin: '5px'}}>
+              <input type="checkbox" checked={selectedPrefecture.includes(p.prefCode)} onClick={() => {handlePrefChange(p.prefCode)}}/>{p.prefName}
+            </div>
+          ))
+        }
+      </div>
     </>
   );
 }
