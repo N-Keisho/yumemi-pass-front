@@ -15,7 +15,7 @@ import { Line } from "react-chartjs-2";
 import { getPopulation } from "@/libs/resas";
 import { useEffect } from "react";
 import { useState } from "react";
-import { Population, ExtendedPopulation, Prefecture } from "@/types/resas";
+import { ExtendedPopulation, Prefecture } from "@/types/resas";
 
 ChartJS.register(
     CategoryScale, 
@@ -28,11 +28,16 @@ ChartJS.register(
 
 export default function LineChart ({prefectures, category}:{prefectures:Prefecture[], category: number}) {
     
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     const [selectedPopulations, setSelectedPopulations] = useState<ExtendedPopulation[]>([]);
     const [populationsData, setPopulationsData] = useState<ExtendedPopulation[]>([]);
     
     useEffect(() => {
         const fetchPopulations = async () => {
+            if (prefectures.length === 0) {
+                return;
+            }
+            setIsLoading(true);
             const newPopulationsData:ExtendedPopulation[] = [...populationsData];
             const newSelectedPopulations:ExtendedPopulation[] = [];
     
@@ -60,10 +65,15 @@ export default function LineChart ({prefectures, category}:{prefectures:Prefectu
     
             setPopulationsData(newPopulationsData);
             setSelectedPopulations(newSelectedPopulations);
+            setIsLoading(false);
         };
     
         fetchPopulations();
     }, [prefectures]);
+
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
 
     const title = {
         0: "総人口",
