@@ -1,0 +1,54 @@
+.categoryBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    padding: 10px 0;
+    width: 100%;
+}
+
+.categoryTag {
+    width: calc(100% / 4);
+    margin-left: 5px;
+    padding: 5px 10px;
+    border-radius: 5px 5px 0 0;
+    cursor: pointer;
+    font-weight: bold;
+    border-bottom: none;
+}
+
+.categoryTag:hover {
+    opacity: 0.8;
+}
+
+.categoryTag_blue {
+    background-color: #4285F4;
+    color: #fff;
+}
+
+.categoryTag_red {
+    background-color: #EA4335;
+    color: #fff;
+}
+
+.categoryTag_yellow {
+    background-color: #FBBC05;
+    color: #fff;
+}
+
+.categoryTag_green {
+    background-color: #34A853;
+    color: #fff;
+}
+
+.span {
+    font-size: 1rem;
+}
+
+@media (max-width: 700px) {
+    .span {
+        font-size: 0.6rem;
+    }    
+}
+
+

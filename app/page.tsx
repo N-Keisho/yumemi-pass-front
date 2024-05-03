@@ -3,6 +3,7 @@ import { getPrefactures } from "@/libs/resas";
 import LineChart from "./component/LineChart";
 import { useEffect, useState } from "react";
 import { Prefecture } from "@/types/resas";
+import CategoryBar from "./component/ui/CategoryBar/CategoryBar";
 
 
 export default function Home() {
@@ -36,9 +37,9 @@ export default function Home() {
     }
   }
 
-  const handleCategoryChange = () => {
-    const c = (category + 1) % 4;
-    setCategory(c);
+  const handleCategoryChange = (id : number) => {
+    console.log('category changed', id);
+    setCategory(id);
   }
 
   const reset = () => {
@@ -51,8 +52,9 @@ export default function Home() {
 
   return (
     <>
+      <CategoryBar handleCategoryChange={handleCategoryChange}/>
       <LineChart prefectures={selectedPrefecture} category={category}/>
-      <button onClick={handleCategoryChange}>Change Category</button>
+      {/* <button onClick={handleCategoryChange}>Change Category</button> */}
       <button onClick={reset}>Reset</button>
       <button onClick={selectAll}>Select All</button>
       <div>
