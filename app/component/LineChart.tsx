@@ -33,7 +33,7 @@ export default function LineChart ({prefectures, category}:{prefectures:Prefectu
     const [populationsData, setPopulationsData] = useState<ExtendedPopulation[]>([]);
     
     useEffect(() => {
-        const fetchPopulations = async () => {
+        (async () => {
             if (prefectures.length === 0) {
                 return;
             }
@@ -66,9 +66,7 @@ export default function LineChart ({prefectures, category}:{prefectures:Prefectu
             setPopulationsData(newPopulationsData);
             setSelectedPopulations(newSelectedPopulations);
             setIsLoading(false);
-        };
-    
-        fetchPopulations();
+        })();
     }, [prefectures]);
 
     if (isLoading) {

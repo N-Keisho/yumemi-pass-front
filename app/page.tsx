@@ -13,9 +13,13 @@ export default function Home() {
 
   useEffect(() => {
     (async () => {
-      const res = await getPrefactures();
-      if (res) {
-        setPrefectures(res.result);
+      try {
+        const res = await getPrefactures();
+        if (res) {
+          setPrefectures(res.result);
+        }
+      } catch (error) {
+        console.error('Failed to fetch prefectures', error);
       }
     })();
   }, []);
