@@ -43,9 +43,6 @@ export default function LineChart({
 
   useEffect(() => {
     (async () => {
-      if (prefectures.length === 0) {
-        return;
-      }
       setIsLoading(true);
       let newPopulationsData:ExtendedPopulation[] = [...populationsData];
       let newSelectedPopulations:ExtendedPopulation[] = [];
