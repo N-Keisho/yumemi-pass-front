@@ -1,0 +1,60 @@
+.back {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+  align-items: center;
+}
+
+.label {
+  display: inline-block;
+  padding: 2px 5px;
+  margin: 5px;
+  width: 90px;
+  background-color: #f0f0f0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+}
+
+.checked_blue {
+  background-color: #4285f4;
+  color: white;
+}
+
+.checked_red {
+  background-color: #ea4335;
+  color: white;
+}
+
+.checked_yellow {
+  background-color: #fbbc05;
+  color: white;
+}
+
+.checked_green {
+  background-color: #34a853;
+  color: white;
+}
+
+.checkbox {
+    accent-color: #000;
+}
+
+@media screen and (max-width: 768px) {
+    .back {
+      padding: 5px;
+      margin: 5px;
+    }
+
+    .label {
+      width: 70px;
+      font-size: 0.75rem;
+      margin: 2px;
+    }
+
+    .checkbox {
+      width: 10px;
+      height: 10px;
+    }
+}
