@@ -1,19 +1,22 @@
+.back {
+  border-radius: 0 0 10px 10px;
+  padding: 10px;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
 .blue {
   background-color: #4285F4;
-  padding: 10px;
 }
 
 .red {
   background-color: #EA4335;
-  padding: 10px;
 }
 
 .yellow {
-  background-color: #FBBC05;
-  padding: 10px;
+  background-color: #FBBC05;;
 }
 
 .green {
   background-color: #34A853;
-  padding: 10px;
 }

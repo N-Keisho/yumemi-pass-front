@@ -16,6 +16,7 @@ import { getPopulation } from "@/libs/resas";
 import { useEffect } from "react";
 import { useState } from "react";
 import { ExtendedPopulation, Prefecture } from "@/types/resas";
+import styles from "./LineChart.module.css";
 
 ChartJS.register(
   CategoryScale,
@@ -44,12 +45,14 @@ export default function LineChart({
   useEffect(() => {
     (async () => {
       setIsLoading(true);
-      let newPopulationsData:ExtendedPopulation[] = [...populationsData];
-      let newSelectedPopulations:ExtendedPopulation[] = [];
-  
+      let newPopulationsData: ExtendedPopulation[] = [...populationsData];
+      let newSelectedPopulations: ExtendedPopulation[] = [];
+
       const promises = prefectures.map(async (p) => {
         try {
-          const pData = newPopulationsData.find((d) => d.prefCode === p.prefCode);
+          const pData = newPopulationsData.find(
+            (d) => d.prefCode === p.prefCode
+          );
           if (pData) {
             if (!newSelectedPopulations.find((d) => d.prefCode === p.prefCode))
               newSelectedPopulations.push(pData);
@@ -57,19 +60,29 @@ export default function LineChart({
           } else {
             const res = await getPopulation(p.prefCode);
             if (res) {
-              const newData = {prefCode: p.prefCode, prefName:p.prefName, result: res.result, message: res.message};
+              const newData = {
+                prefCode: p.prefCode,
+                prefName: p.prefName,
+                result: res.result,
+                message: res.message,
+              };
               newPopulationsData = [...newPopulationsData, newData];
               newSelectedPopulations = [...newSelectedPopulations, newData];
             }
           }
         } catch (error) {
-          console.error(`Failed to fetch population data for prefecture code: ${p.prefCode}`, error);
+          console.error(
+            `Failed to fetch population data for prefecture code: ${p.prefCode}`,
+            error
+          );
         }
       });
-  
+
       await Promise.all(promises);
-  
-      if (JSON.stringify(newPopulationsData) !== JSON.stringify(populationsData)) {
+
+      if (
+        JSON.stringify(newPopulationsData) !== JSON.stringify(populationsData)
+      ) {
         setPopulationsData(newPopulationsData);
       }
       setSelectedPopulations(newSelectedPopulations);
@@ -78,7 +91,7 @@ export default function LineChart({
   }, [prefectures, populationsData]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div className={styles.back}>Loading...</div>;
   }
 
   const title = {
@@ -116,6 +129,7 @@ export default function LineChart({
     animation: {
       duration: 1000,
     },
+    maintainAspectRatio: false,
   };
 
   const data: ChartData<"line"> = {
@@ -132,8 +146,8 @@ export default function LineChart({
   };
 
   return (
-    <div>
-      <Line options={options} data={data} />
+    <div className={styles.back}>
+        <Line options={options} data={data} />
     </div>
   );
 }

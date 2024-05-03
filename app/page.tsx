@@ -1,6 +1,6 @@
 "use client";
 import { getPrefactures } from "@/libs/resas";
-import LineChart from "./component/LineChart";
+import LineChart from "./component/ui/LineChart/LineChart";
 import { useEffect, useState } from "react";
 import { Prefecture } from "@/types/resas";
 import CategoryBar from "./component/ui/CategoryBar/CategoryBar";
@@ -67,7 +67,7 @@ export default function Home() {
   return (
     <>
       <CategoryBar handleCategoryChange={handleCategoryChange} />
-      <div className={bgColor[category as keyof typeof bgColor]}>
+      <div className={`${styles.back} ${bgColor[category as keyof typeof bgColor]}`}>
         <PrefecturesButtons prefectures={prefectures} selectedPrefecture={selectedPrefecture} handlePrefChange={handlePrefChange} category={category}/>
         <LineChart prefectures={selectedPrefecture} category={category} />
         <button onClick={reset}>Reset</button>

@@ -1,0 +1,19 @@
+.back {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+    text-align: center;
+  }
+
+  @media screen and (max-width: 768px) {
+    .back {
+      padding: 5px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+  }
