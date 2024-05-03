@@ -1,4 +1,5 @@
 'use client'
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -27,23 +28,42 @@ ChartJS.register(
 
 export default function LineChart ({prefectures, category}:{prefectures:Prefecture[], category: number}) {
     
-    const selectedPopulations: ExtendedPopulation[] = [];
+    const [selectedPopulations, setSelectedPopulations] = useState<ExtendedPopulation[]>([]);
     const [populationsData, setPopulationsData] = useState<ExtendedPopulation[]>([]);
-
-    prefectures.forEach(async (p) => {
-        const pData = populationsData.find((d) => d.prefCode === p.prefCode);
-        if (pData) {
-            if (!selectedPopulations.find((d) => d.prefCode === p.prefCode))
-                selectedPopulations.push(pData);
-        }else {
-            const res = await getPopulation(p.prefCode);
-            if (res) {
-                setPopulationsData([...populationsData, {prefCode: p.prefCode, prefName:p.prefName, result: res.result, message: res.message}]);
-                selectedPopulations.push({prefCode: p.prefCode, prefName:p.prefName, result: res.result, message: res.message});
-            }
-        }
-    });
-
+    
+    useEffect(() => {
+        const fetchPopulations = async () => {
+            const newPopulationsData:ExtendedPopulation[] = [...populationsData];
+            const newSelectedPopulations:ExtendedPopulation[] = [];
+    
+            const promises = prefectures.map(async (p) => {
+                try {
+                    const pData = newPopulationsData.find((d) => d.prefCode === p.prefCode);
+                    if (pData) {
+                        if (!newSelectedPopulations.find((d) => d.prefCode === p.prefCode))
+                            newSelectedPopulations.push(pData);
+                        return;
+                    } else {
+                        const res = await getPopulation(p.prefCode);
+                        if (res) {
+                            const newData = {prefCode: p.prefCode, prefName:p.prefName, result: res.result, message: res.message};
+                            newPopulationsData.push(newData);
+                            newSelectedPopulations.push(newData);
+                        }
+                    }
+                } catch (error) {
+                    console.error(`Failed to fetch population data for prefecture code: ${p.prefCode}`, error);
+                }
+            });
+    
+            await Promise.all(promises);
+    
+            setPopulationsData(newPopulationsData);
+            setSelectedPopulations(newSelectedPopulations);
+        };
+    
+        fetchPopulations();
+    }, [prefectures]);
 
     const title = {
         0: "総人口",
@@ -51,6 +71,7 @@ export default function LineChart ({prefectures, category}:{prefectures:Prefectu
         2: "生産年齢人口",
         3: "老年人口",
     }
+
     const options: ChartOptions<"line"> = {
         scales: {
             x: {
@@ -80,7 +101,6 @@ export default function LineChart ({prefectures, category}:{prefectures:Prefectu
             duration: 1000,
         }
     };
-    
 
 
     const data: ChartData<"line"> = {
