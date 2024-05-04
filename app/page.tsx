@@ -50,7 +50,6 @@ export default function Home() {
   };
 
   const handleCategoryChange = (id: number) => {
-    console.log("category changed", id);
     setCategory(id);
   };
 
@@ -84,6 +83,7 @@ export default function Home() {
           reset={reset}
         />
         <LineChart prefectures={selectedPrefecture} category={category} />
+        <p>出典：RESAS（地域経済分析システム）</p>
       </div>
     </>
   );

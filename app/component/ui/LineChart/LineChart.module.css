@@ -3,11 +3,7 @@
     border-radius: 5px;
     padding: 10px;
     margin: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 750px;
-    text-align: center;
   }
 
   @media screen and (max-width: 768px) {
