@@ -2,6 +2,12 @@ name: Cypress Tests
 
 on: push
 
+env:
+  RESAS_API_URL: ${{secrets.RESAS_API_URL}}
+  RESAS_API_KEY: ${{secrets.RESAS_API_KEY}}
+  RESAS_PREFECTURES_API: ${{secrets.RESAS_PREFECTURES_API}}
+  RESAS_POPULATION_API: ${{secrets.RESAS_POPULATION_API}}
+
 jobs:
   cypress-run:
     runs-on: ubuntu-22.04
@@ -15,3 +21,4 @@ jobs:
         with:
           build: npm run build
           start: npm start
+          
