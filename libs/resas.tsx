@@ -13,7 +13,7 @@ export async function getPrefactures(): Promise<Prefactures | null> {
         const json: Prefactures = await res.json();
         return json;
     } catch (error) {
-        console.error(error);
+        // console.error(error);
         return null;
     }
     
@@ -30,7 +30,7 @@ export async function getPopulation(prefCode: number): Promise<Population | null
         const json: Population = await res.json();
         return json;
     }catch (error) {
-        console.error(error);
+        // console.error(error);
         return null;
     }
 }
