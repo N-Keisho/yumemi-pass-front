@@ -5,7 +5,7 @@ import Image from "next/image";
 const Footer = () => {
   return (
     <footer className={styles.footer}>
-      <div className={styles.div}>Ⓒ N-Keisho</div>
+      <div className={styles.div}>Ⓒ N-Keisho All rights reserved.</div>
       <Link href="https://github.com/N-Keisho">
         <Image
           className={styles.image}
