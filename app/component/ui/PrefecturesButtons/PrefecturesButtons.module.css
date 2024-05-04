@@ -10,11 +10,16 @@
   display: inline-block;
   padding: 2px 5px;
   margin: 5px;
-  width: 90px;
+  width: calc(100%/10);
   background-color: #f0f0f0;
   align-items: center;
   justify-content: center;
   border-radius: 5px;
+}
+
+.selectAll {
+  border-color: #000;
+  font-weight: bold;
 }
 
 .checked_blue {

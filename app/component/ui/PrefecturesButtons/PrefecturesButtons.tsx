@@ -1,19 +1,36 @@
 import { Prefecture } from "@/types/resas";
 import styles from "./PrefecturesButtons.module.css";
 
+const checkedColor = {
+  0: styles.checked_blue,
+  1: styles.checked_red,
+  2: styles.checked_yellow,
+  3: styles.checked_green,
+};
+
 const PrefecturesButtons = ({
   prefectures,
   selectedPrefecture,
   handlePrefChange,
+  selectAll,
+  reset,
   category,
 }: {
   prefectures: Prefecture[];
   selectedPrefecture: Prefecture[];
   handlePrefChange: (prefCode: number) => void;
+  selectAll: () => void;
+  reset: () => void;
   category: number;
 }) => {
   return (
     <div className={styles.back}>
+      <SelectAllButton
+        selectedPrefecture={selectedPrefecture}
+        selectAll={selectAll}
+        reset={reset}
+        category={category}
+      />
       {prefectures.map((p) => (
         <PrefectureButton
           key={p.prefCode}
@@ -41,12 +58,6 @@ const PrefectureButton = ({
   category: number;
 }) => {
 
-  const checkedColor = {
-    0: styles.checked_blue,
-    1: styles.checked_red,
-    2: styles.checked_yellow,
-    3: styles.checked_green,
-  };
 
   const checked = selectedPrefecture.includes(prefecture);
   return (
@@ -62,4 +73,43 @@ const PrefectureButton = ({
       {prefecture.prefName}
     </label>
   );
+};
+
+
+const SelectAllButton = ({
+  selectedPrefecture,
+  selectAll,
+  reset,
+  category,
+}: {
+  selectedPrefecture: Prefecture[];
+  selectAll: () => void;
+  reset: () => void;
+  category: number;
+}) => {
+
+  const checked = selectedPrefecture.length === 47;
+
+  const handleAllSelect = () => {
+    if (selectedPrefecture.length === 47) {
+      reset();
+    } else {
+      selectAll();
+    }
+  };
+
+  return (
+    <label className={`${styles.label} ${styles.selectAll} ${checked ? checkedColor[category as keyof typeof checkedColor] : '' }`}>
+      <input
+        type="checkbox"
+        checked={checked}
+        className={styles.checkbox}
+        onChange={() => {
+          handleAllSelect();
+        }}
+      />
+      全選択
+    </label>
+  );
+
 };
