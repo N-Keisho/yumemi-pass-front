@@ -6,6 +6,7 @@ import { Prefecture } from "@/types/resas";
 import CategoryBar from "./component/ui/CategoryBar/CategoryBar";
 import styles from "./page.module.css";
 import PrefecturesButtons from "./component/ui/PrefecturesButtons/PrefecturesButtons";
+import Lodaing from "./component/ui/Loading/Loading";
 
 export default function Home() {
   const [prefectures, setPrefectures] = useState<Prefecture[]>([]);
@@ -28,7 +29,11 @@ export default function Home() {
   }, []);
 
   if (prefectures.length === 0) {
-    return <div>Loading...</div>;
+    return (
+      <div className={styles.loadingBack}>
+        <Lodaing />
+      </div>
+    );
   }
 
   const handlePrefChange = (prefCode: number) => {
@@ -67,12 +72,18 @@ export default function Home() {
   return (
     <>
       <CategoryBar handleCategoryChange={handleCategoryChange} />
-      <div className={`${styles.back} ${bgColor[category as keyof typeof bgColor]}`}>
-        <PrefecturesButtons prefectures={prefectures} selectedPrefecture={selectedPrefecture} handlePrefChange={handlePrefChange} category={category}/>
+      <div
+        className={`${styles.back} ${bgColor[category as keyof typeof bgColor]}`}
+      >
+        <PrefecturesButtons
+          prefectures={prefectures}
+          selectedPrefecture={selectedPrefecture}
+          handlePrefChange={handlePrefChange}
+          category={category}
+          selectAll={selectAll}
+          reset={reset}
+        />
         <LineChart prefectures={selectedPrefecture} category={category} />
-        <button onClick={reset}>Reset</button>
-        <button onClick={selectAll}>Select All</button>
-       
       </div>
     </>
   );

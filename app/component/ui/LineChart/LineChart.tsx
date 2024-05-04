@@ -17,6 +17,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { ExtendedPopulation, Prefecture } from "@/types/resas";
 import styles from "./LineChart.module.css";
+import Lodaing from "../Loading/Loading";
 
 ChartJS.register(
   CategoryScale,
@@ -91,7 +92,9 @@ export default function LineChart({
   }, [prefectures, populationsData]);
 
   if (isLoading) {
-    return <div className={styles.back}>Loading...</div>;
+    return (<div className={styles.back}>
+      <Lodaing />
+    </div>);
   }
 
   const title = {
