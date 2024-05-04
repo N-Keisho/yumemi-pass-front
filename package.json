@@ -11,7 +11,7 @@
     "test:watch": "jest --watch",
     "cypress": "cypress open",
     "cypress:headless": "cypress run",
-    "ci": "start-server-and-test 'serve -s ./build' 3000 cypress:headless"
+    "ci": "start-server-and-test 'start' 'cypress:headless'"
   },
   "dependencies": {
     "chart.js": "^4.4.2",
