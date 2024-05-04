@@ -4,6 +4,10 @@
 
 https://yumemi.notion.site/0e9ef27b55704d7882aab55cc86c999d
 
+# デプロイリンク
+
+https://yumemi-pass.n-keisho.com/
+
 # 使用チャートライブラリ
 
 - react-chartjs-2
