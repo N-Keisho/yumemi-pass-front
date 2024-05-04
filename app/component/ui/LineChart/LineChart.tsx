@@ -110,12 +110,15 @@ export default function LineChart({
         title: {
           display: true,
           text: "年度（年）",
+          font: { size: 15 },
+          color: "#000",
         },
       },
       y: {
         title: {
           display: true,
-          text: "人口（人）",
+          text: "人口数（人）",
+          font: { size: 15 },
         },
       },
     },
@@ -123,6 +126,8 @@ export default function LineChart({
       title: {
         display: true,
         text: title[category as keyof typeof title] || "",
+        padding: { top: 10, bottom: 10 },
+        font: { size: 20},
       },
       legend: {
         display: true,
