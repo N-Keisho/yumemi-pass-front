@@ -31,9 +31,11 @@ ChartJS.register(
 export default function LineChart({
   prefectures,
   category,
+  errorOccurred,
 }: {
   prefectures: Prefecture[];
   category: number;
+  errorOccurred: () => void;
 }) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [selectedPopulations, setSelectedPopulations] = useState<
@@ -69,13 +71,12 @@ export default function LineChart({
               };
               newPopulationsData = [...newPopulationsData, newData];
               newSelectedPopulations = [...newSelectedPopulations, newData];
+            } else {
+              errorOccurred();
             }
           }
         } catch (error) {
-          console.error(
-            `Failed to fetch population data for prefecture code: ${p.prefCode}`,
-            error
-          );
+          errorOccurred();
         }
       });
 
@@ -89,12 +90,14 @@ export default function LineChart({
       setSelectedPopulations(newSelectedPopulations);
       setIsLoading(false);
     })();
-  }, [prefectures, populationsData]);
+  }, [prefectures, populationsData, errorOccurred]);
 
   if (isLoading) {
-    return (<div className={styles.back}>
-      <Lodaing />
-    </div>);
+    return (
+      <div className={styles.back}>
+        <Lodaing />
+      </div>
+    );
   }
 
   const title = {
@@ -127,7 +130,7 @@ export default function LineChart({
         display: true,
         text: title[category as keyof typeof title] || "",
         padding: { top: 10, bottom: 10 },
-        font: { size: 20},
+        font: { size: 20 },
       },
       legend: {
         display: true,
@@ -155,7 +158,7 @@ export default function LineChart({
 
   return (
     <div className={styles.back}>
-        <Line options={options} data={data} />
+      <Line options={options} data={data} />
     </div>
   );
 }

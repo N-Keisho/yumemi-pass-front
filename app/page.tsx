@@ -14,6 +14,10 @@ export default function Home() {
     []
   );
   const [category, setCategory] = useState<number>(0);
+  const [errorMessage, setErrorMessage] = useState<string>("");
+  const errorOccurred = () => {
+    setErrorMessage("人口データの取得に失敗しました。やり直してください。何度も発生する場合はAPI制限にかかっている可能性がありますので，日付が変わってからお試しください。");
+  }
 
   useEffect(() => {
     (async () => {
@@ -21,12 +25,22 @@ export default function Home() {
         const res = await getPrefactures();
         if (res) {
           setPrefectures(res.result);
+        } else {
+          errorOccurred();
         }
       } catch (error) {
-        console.error("Failed to fetch prefectures", error);
+        errorOccurred();
       }
     })();
   }, []);
+
+  if (errorMessage !== "") {
+    return (
+      <div className={styles.loadingBack}>
+        <p>{errorMessage}</p>
+      </div>
+    );
+  }
 
   if (prefectures.length === 0) {
     return (
@@ -82,7 +96,11 @@ export default function Home() {
           selectAll={selectAll}
           reset={reset}
         />
-        <LineChart prefectures={selectedPrefecture} category={category} />
+        <LineChart
+          prefectures={selectedPrefecture}
+          category={category}
+          errorOccurred={errorOccurred}
+        />
         <p>出典：RESAS（地域経済分析システム）</p>
       </div>
     </>
