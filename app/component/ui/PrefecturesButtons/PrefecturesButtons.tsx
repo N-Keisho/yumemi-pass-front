@@ -45,7 +45,6 @@ const PrefecturesButtons = ({
 };
 export default PrefecturesButtons;
 
-
 const PrefectureButton = ({
   prefecture,
   selectedPrefecture,
@@ -57,11 +56,11 @@ const PrefectureButton = ({
   handlePrefChange: (prefCode: number) => void;
   category: number;
 }) => {
-
-
   const checked = selectedPrefecture.includes(prefecture);
   return (
-    <label className={`${styles.label} ${checked ? checkedColor[category as keyof typeof checkedColor] : '' }`}>
+    <label
+      className={`${styles.label} ${checked ? checkedColor[category as keyof typeof checkedColor] : ""}`}
+    >
       <input
         type="checkbox"
         checked={checked}
@@ -75,7 +74,6 @@ const PrefectureButton = ({
   );
 };
 
-
 const SelectAllButton = ({
   selectedPrefecture,
   selectAll,
@@ -87,7 +85,6 @@ const SelectAllButton = ({
   reset: () => void;
   category: number;
 }) => {
-
   const checked = selectedPrefecture.length === 47;
 
   const handleAllSelect = () => {
@@ -99,7 +96,9 @@ const SelectAllButton = ({
   };
 
   return (
-    <label className={`${styles.label} ${styles.selectAll} ${checked ? checkedColor[category as keyof typeof checkedColor] : '' }`}>
+    <label
+      className={`${styles.label} ${styles.selectAll} ${checked ? checkedColor[category as keyof typeof checkedColor] : ""}`}
+    >
       <input
         type="checkbox"
         checked={checked}
@@ -111,5 +110,4 @@ const SelectAllButton = ({
       全選択
     </label>
   );
-
 };

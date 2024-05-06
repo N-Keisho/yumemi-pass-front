@@ -1,18 +1,18 @@
 .back {
-    background-color: #fff;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px;
-    height: 750px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+  height: 750px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-  @media screen and (max-width: 768px) {
-    .back {
-      padding: 5px;
-        margin-left: 5px;
-        margin-right: 5px;
-    }
+@media screen and (max-width: 768px) {
+  .back {
+    padding: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
   }
+}

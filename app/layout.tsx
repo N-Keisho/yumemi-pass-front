@@ -8,7 +8,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "都道府県別の総人口推移グラフ",
-  description: "都道府県別の総人口推移グラフを表示するサイトです．ゆめみパスポートのフロントエンドコーディング試験として作成しました．",
+  description:
+    "都道府県別の総人口推移グラフを表示するサイトです．ゆめみパスポートのフロントエンドコーディング試験として作成しました．",
 };
 
 export default function RootLayout({

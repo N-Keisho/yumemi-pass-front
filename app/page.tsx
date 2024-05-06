@@ -16,8 +16,10 @@ export default function Home() {
   const [category, setCategory] = useState<number>(0);
   const [errorMessage, setErrorMessage] = useState<string>("");
   const errorOccurred = () => {
-    setErrorMessage("人口データの取得に失敗しました。やり直してください。何度も発生する場合はAPI制限にかかっている可能性がありますので，日付が変わってからお試しください。");
-  }
+    setErrorMessage(
+      "人口データの取得に失敗しました。やり直してください。何度も発生する場合はAPI制限にかかっている可能性がありますので，日付が変わってからお試しください。"
+    );
+  };
 
   useEffect(() => {
     (async () => {

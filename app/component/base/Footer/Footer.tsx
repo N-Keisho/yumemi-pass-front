@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.div}>Ⓒ N-Keisho All rights reserved.</div>
-      <Link href="https://github.com/N-Keisho">
+      <Link href="https://github.com/N-Keisho/yumemi-pass-front">
         <Image
           className={styles.image}
           src="/img/github-mark-white.svg"
