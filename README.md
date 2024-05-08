@@ -2,9 +2,7 @@
 
 このサイトは株式会社ゆめみ様が発行している，ゆめみパスポートのコーディング試験に応募するために作成したものです．
 
-以下のリンクにデプロイしてあります．
-
-https://yumemi-pass.n-keisho.com/
+デプロイ先はこちら：https://yumemi-pass.n-keisho.com/
 
 
 **都道府県別の総人口推移グラフを表示するSPA** がお題であり，そのデータは [RESAS(地域経済分散分析システム)](https://opendata.resas-portal.go.jp/) から取得しています．
@@ -38,6 +36,9 @@ $ npm run cypress:headless
 
 
 # 各種リンク
+## 使用フレームワーク
+- Next.js : https://nextjs.org/
+
 ## デプロイ先
 - Vercel：https://vercel.com/
 - デプロイリンク：https://yumemi-pass.n-keisho.com/
