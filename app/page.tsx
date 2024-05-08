@@ -1,5 +1,5 @@
 "use client";
-import { getPrefactures } from "@/libs/resas";
+import { getPrefectures } from "@/libs/resas";
 import LineChart from "./component/ui/LineChart/LineChart";
 import { useEffect, useState } from "react";
 import { Prefecture } from "@/types/resas";
@@ -24,7 +24,7 @@ export default function Home() {
   useEffect(() => {
     (async () => {
       try {
-        const res = await getPrefactures();
+        const res = await getPrefectures();
         if (res) {
           setPrefectures(res.result);
         } else {

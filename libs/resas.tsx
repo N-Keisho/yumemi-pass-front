@@ -1,8 +1,8 @@
 "use server";
 
-import { Prefactures, Population } from "@/types/resas";
+import { Prefectures, Population } from "@/types/resas";
 
-export async function getPrefactures(): Promise<Prefactures | null> {
+export async function getPrefectures(): Promise<Prefectures | null> {
   try {
     const url =
       String(process.env.RESAS_API_URL) +

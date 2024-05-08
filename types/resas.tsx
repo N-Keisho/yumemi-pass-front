@@ -1,4 +1,4 @@
-export interface Prefactures {
+export interface Prefectures {
   message: null;
   result: Prefecture[];
 }
