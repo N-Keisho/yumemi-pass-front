@@ -61,6 +61,15 @@
 $ npm install
 $ npm run test
 ```
+このとき，Next.jsのLinkコンポーネントのconsole.errorが表示されますが，これはテストのエラーではありません．
+
+現に結果はPassとなっていると思います．
+
+console.log, console.errorの出力を非表示にするためには，以下のコマンドで実行します．
+```powershell
+$ npm install
+$ npx jest --silent
+```
 
 ## E2Eテスト
 
@@ -76,7 +85,7 @@ $ npm run build
 $ npm run start
 ```
 
-2. 別タブを起動して以下を入力するとテストが実行されます．
+2. もう一つコマンドラインを起動して以下を入力するとテストが実行されます．
 
 ```powershell
 $ npm run cypress:headless
