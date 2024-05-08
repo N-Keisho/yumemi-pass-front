@@ -85,7 +85,7 @@ export default function Home() {
   };
 
   return (
-    <>
+    <div className={styles.container}>
       <CategoryBar handleCategoryChange={handleCategoryChange} />
       <div
         className={`${styles.back} ${bgColor[category as keyof typeof bgColor]}`}
@@ -105,6 +105,6 @@ export default function Home() {
         />
         <p>出典：RESAS（地域経済分析システム）</p>
       </div>
-    </>
+    </div>
   );
 }
