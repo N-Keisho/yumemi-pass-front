@@ -3,17 +3,14 @@
   border-radius: 5px;
   padding: 10px;
   margin: 10px;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
 }
 
-.label {
-  display: inline-block;
+.div {
   padding: 2px 5px;
   margin: 5px;
-  width: calc(100% / 10);
   background-color: #f0f0f0;
-  align-items: center;
-  justify-content: center;
   border-radius: 5px;
 }
 
@@ -48,18 +45,19 @@
 
 @media screen and (max-width: 768px) {
   .back {
+    grid-template-columns: repeat(auto-fit, minmax(52px, 1fr));
     padding: 5px;
     margin: 5px;
   }
 
-  .label {
-    width: 70px;
-    font-size: 0.75rem;
+  .div {
+    font-size: 0.5rem;
+    padding: 1px 2px;
     margin: 2px;
   }
 
   .checkbox {
-    width: 10px;
-    height: 10px;
+    width: 7px;
+    height: 7px;
   }
 }

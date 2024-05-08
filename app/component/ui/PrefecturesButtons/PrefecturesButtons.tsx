@@ -58,19 +58,21 @@ const PrefectureButton = ({
 }) => {
   const checked = selectedPrefecture.includes(prefecture);
   return (
-    <label
-      className={`${styles.label} ${checked ? checkedColor[category as keyof typeof checkedColor] : ""}`}
+    <div
+      className={`${styles.div} ${checked ? checkedColor[category as keyof typeof checkedColor] : ""}`}
     >
-      <input
-        type="checkbox"
-        checked={checked}
-        className={styles.checkbox}
-        onChange={() => {
-          handlePrefChange(prefecture.prefCode);
-        }}
-      />
-      {prefecture.prefName}
-    </label>
+      <label>
+        <input
+          type="checkbox"
+          checked={checked}
+          className={styles.checkbox}
+          onChange={() => {
+            handlePrefChange(prefecture.prefCode);
+          }}
+        />
+        {prefecture.prefName}
+      </label>
+    </div>
   );
 };
 
@@ -96,18 +98,20 @@ const SelectAllButton = ({
   };
 
   return (
-    <label
-      className={`${styles.label} ${styles.selectAll} ${checked ? checkedColor[category as keyof typeof checkedColor] : ""}`}
+    <div
+      className={`${styles.div} ${styles.selectAll} ${checked ? checkedColor[category as keyof typeof checkedColor] : ""}`}
     >
-      <input
-        type="checkbox"
-        checked={checked}
-        className={styles.checkbox}
-        onChange={() => {
-          handleAllSelect();
-        }}
-      />
-      全選択
-    </label>
+      <label>
+        <input
+          type="checkbox"
+          checked={checked}
+          className={styles.checkbox}
+          onChange={() => {
+            handleAllSelect();
+          }}
+        />
+        全選択
+      </label>
+    </div>
   );
 };
