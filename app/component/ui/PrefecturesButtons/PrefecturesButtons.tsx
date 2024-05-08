@@ -58,10 +58,10 @@ const PrefectureButton = ({
 }) => {
   const checked = selectedPrefecture.includes(prefecture);
   return (
-    <div
-      className={`${styles.div} ${checked ? checkedColor[category as keyof typeof checkedColor] : ""}`}
-    >
-      <label>
+    <label>
+      <div
+        className={`${styles.div} ${checked ? checkedColor[category as keyof typeof checkedColor] : ""}`}
+      >
         <input
           type="checkbox"
           checked={checked}
@@ -71,8 +71,8 @@ const PrefectureButton = ({
           }}
         />
         {prefecture.prefName}
-      </label>
-    </div>
+      </div>
+    </label>
   );
 };
 
@@ -98,10 +98,10 @@ const SelectAllButton = ({
   };
 
   return (
-    <div
-      className={`${styles.div} ${styles.selectAll} ${checked ? checkedColor[category as keyof typeof checkedColor] : ""}`}
-    >
-      <label>
+    <label>
+      <div
+        className={`${styles.div} ${styles.selectAll} ${checked ? checkedColor[category as keyof typeof checkedColor] : ""}`}
+      >
         <input
           type="checkbox"
           checked={checked}
@@ -111,7 +111,7 @@ const SelectAllButton = ({
           }}
         />
         全選択
-      </label>
-    </div>
+      </div>
+    </label>
   );
 };
