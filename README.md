@@ -5,8 +5,7 @@
 デプロイしたページはこちら：https://yumemi-pass.n-keisho.com/
 
 **都道府県別の総人口推移グラフを表示するSPA** がお題であり，そのデータは [RESAS(地域経済分散分析システム)](https://opendata.resas-portal.go.jp/) から取得しています．
-![イメージ画像](image/README/1715164207292.png)
-![イメージGif](image/README/YumemiPass.gif)
+![イメージ画像](image/README/ScreenShot.png)
 
 要件はこちらのサイトの指示に沿っています : https://yumemi.notion.site/0e9ef27b55704d7882aab55cc86c999d
 
@@ -19,6 +18,8 @@
 全選択を押すとすべて選択され，すべて選択されている状態でもう一度押すとリセットされます．
 
 # アピールポイント
+
+![イメージGif](image/README/YumemiPass.gif)
 
 ## 1. 分かりやすいUI
 
@@ -35,6 +36,7 @@
 ## 3. AtomicDesignを活用したコンポーネント分割
 
 - 設計時からAtomicDesignを意識して作成しているため，コンポーネントが適切に分割されている
+- Figmaリンク：https://www.figma.com/file/oWWVrEPukLptsYWheyMp1l/%E3%82%86%E3%82%81%E3%81%BF%E3%83%91%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88?type=design&node-id=0%3A1&mode=design&t=AtDUpFBBU4BC6jyF-1
 
 ## 4. レスポンシブデザイン
 
@@ -85,6 +87,9 @@ $ npm run cypress:headless
 ## フレームワーク
 
 - Next.js : https://nextjs.org/
+
+## モック作成
+- Figma : https://www.figma.com/file/oWWVrEPukLptsYWheyMp1l/%E3%82%86%E3%82%81%E3%81%BF%E3%83%91%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88?type=design&node-id=0%3A1&mode=design&t=AtDUpFBBU4BC6jyF-1
 
 ## デプロイ
 
