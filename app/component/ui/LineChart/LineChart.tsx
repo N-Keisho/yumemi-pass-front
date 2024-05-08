@@ -107,13 +107,17 @@ export default function LineChart({
     3: "老年人口",
   };
 
+  const textSize = window.screen.width < 600 ? 7 : 15;
+
   const options: ChartOptions<"line"> = {
     scales: {
       x: {
         title: {
           display: true,
           text: "年度（年）",
-          font: { size: 15 },
+          font: {
+            size: textSize,
+          },
           color: "#000",
         },
       },
@@ -121,7 +125,7 @@ export default function LineChart({
         title: {
           display: true,
           text: "人口数（人）",
-          font: { size: 15 },
+          font: { size: textSize },
         },
       },
     },
@@ -130,11 +134,15 @@ export default function LineChart({
         display: true,
         text: title[category as keyof typeof title] || "",
         padding: { top: 10, bottom: 10 },
-        font: { size: 20 },
+        font: { size: textSize * 1.5 },
       },
       legend: {
         display: true,
         position: "bottom",
+        labels: {
+          font: { size: textSize },
+          boxWidth: textSize,
+        },
       },
     },
     animation: {
